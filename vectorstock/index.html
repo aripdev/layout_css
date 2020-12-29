@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="asset/favicon.ico" type="image/x-icon">
+    <title>Vectorstock</title>
+    <style> 
+
+        
+    @font-face {
+        font-family: 'MuseoSansRegular';
+        src: url(asset/font/MuseoSansRegular.woff);
+    }
+    :root{
+        font-family: MuseoSansRegular;
+    }
+
+    ul{
+        padding: 0;
+    }
+    ul >li{
+        list-style: none;
+    }
+    body{
+        margin: 0;
+    }
+    header{
+        display: flex;
+        flex-direction: column;
+        border-top: 4px solid #52c4ec;
+        background: url(asset/image/background-1.jpg);
+    }
+
+    .user-menu{
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .user-menu button{
+        font-weight: 400;
+        letter-spacing: .05em;
+        color: #aeaeb4;
+        background-color: #101123;
+        border-radius: 2px;
+        border-color: #808285;
+        padding:1em 2em;
+        font-size: .7em;
+    }
+
+    .user-menu section{
+        margin: 2em 3em;
+        display: flex;
+        align-items: center;
+    }
+
+    .user-menu :first-child {
+        margin-right: 1.5em;
+    }
+
+    .user-menu section button:hover{
+        cursor: pointer;
+        background-color: #808285;
+    }
+
+    .header-content{
+        display: flex;
+        align-items: center;
+        flex-flow: column nowrap;
+    }
+
+    h1,h2{
+        font-weight: normal;
+        color: white;
+    }
+
+    .header-content h1{
+        margin-bottom: 0;
+    }
+
+    .header-content h1 a{
+        text-decoration: none;
+        font-size: 1.3em;
+        color:white;
+    }
+
+    .header-content h2{
+        font-size: 1em;
+    }
+
+    .header-content input{
+        width: 440px;
+        border: 0;
+        padding: 5px;
+        border-top-left-radius: 4px;
+        border-bottom-left-radius: 4px;
+        font-family: MuseoSansRegular;
+        color: #666;
+        font-size: 1em;
+    }
+
+    .header-content form label{
+        background-color: #00b5f0;
+        display: inline-block;
+        border-top-right-radius: 4px;
+        border-bottom-right-radius: 4px;
+    }
+
+    .header-content form{
+        display: flex;
+        margin-top: 3em;
+    }
+
+    .header-content form label img{
+        height: 1.5em;
+    }
+
+    .header-content form label{
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        padding: .7em;
+    }
+
+    .header-content form label :hover{
+        cursor: pointer;
+    }
+
+    .news-update{
+        display: flex;
+        justify-content: center;
+        margin: 3em 0 5em;
+    }
+
+    .news-update span{
+        background-color: white;
+        font-size: .7em;
+        padding: .2em .5em;
+        border-radius: 2px;
+    }
+
+    .news-update a{
+        color: white;
+        margin-left: 1em;
+    }
+
+    main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: #e8eaea;
+        /* padding:0 0 2em 0; */
+    }
+
+    main nav{
+        margin-top: 1.5em;
+    }
+
+    main nav ul :first-child{
+        border-radius:5px 0 0 5px;
+    }
+    main nav ul :last-child{
+        border-radius: 0 5px 5px 0;
+    }
+
+    main nav ul li{
+        float: left;
+        background-color:white;
+        padding: .5em 1.5em;
+        border: 1px solid #ccc;
+    }
+
+    main nav a{
+        font-size: .7em;
+        color: #9f9fa5;
+        text-decoration: none;
+    }
+
+    main nav .selected{
+        background-color: #f1f2f2;
+        
+    }
+
+    main nav ul .selected a{
+        color: #00b5f0;
+    }
+
+    main nav ul li span{
+        display:inline-block;
+        visibility: hidden;
+        width: 1em;
+        height: 1em;
+        top: 27px;
+        left: -40%;
+        background: url(asset/image/arrow.png) no-repeat;
+        background-size: 10px 7px;
+        position: relative;
+    }
+
+    main nav ul .selected span{
+        visibility: visible;
+       
+    }
+
+    .content{
+        display: flex;
+        width: 1200px;
+        flex-flow: row wrap;
+    }
+
+    .content ul{
+        height: 1190px;
+        display: flex;
+        flex-flow: column wrap;
+        gap: .5em;
+        margin-bottom: 0;
+    }
+
+    .content ul li{
+        margin-top: -.3em;
+        width: 390px;
+    }
+
+    .content ul li a img{
+        border: 1px solid rgb(217, 219, 201);
+        width: 100%;
+    }
+
+    .content-scroll{
+        width: 1200px;
+    }
+
+    .content-scroll ul{
+        margin: 0;
+    }
+
+    .content-scroll ul{
+        display: flex;
+        gap:1em;
+    }
+
+    .content-scroll ul li{
+        border-radius: 3px;
+        border: 1px solid rgb(217, 219, 201);
+    }
+
+    .content-scroll :last-child{
+        flex-grow: 1;
+    }
+
+    .content-scroll .more{
+        display: flex;
+        flex-flow: column wrap;
+        align-items: center;
+        justify-content: center;
+        background-color: #52c4ec;
+        border-radius: 4px;
+    }
+
+    .content-scroll .more:hover{
+        background-color: #101123;
+        cursor: pointer;
+    }
+
+    .more a{
+        color: white;
+        text-decoration: none;
+    }
+
+    .more button{
+        background-color: white;
+        color: #52c4ec;
+        border: 0;
+        margin-top: 1em;
+        padding:.5em .6em;
+        border-radius: 3px;
+    }
+
+    .more :last-child{
+        flex-grow: 0;
+    }
+  
+    .link{
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        margin: 1em;
+        border-bottom:1px solid #999;
+    }
+    .link a{
+        border:1px solid #999;
+        position: relative;
+        top: 1.3em;
+        color:#999;
+        font-size: .7em;
+        text-decoration: none;
+        background-color: rgb(255, 255, 255);
+        padding: .8em;
+        border-radius: .5em;
+    }
+
+    .pricing{
+        margin-top: 1em;
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+        background-color: #2f3a3d;
+        background-image: url(asset/back.png);
+        background-repeat: repeat-x;
+        background-size: 10px 3px;
+        width: 100%;
+    }
+
+    .pricing h2,.pricing h3{
+        font-weight: normal;
+    }
+
+    .pricing h2{
+        margin-bottom: 0;
+        font-size: 2em;
+        color: #dcdede;
+    }
+    .pricing h3{
+        margin-top: 0;
+        color: #a2a7a8;
+    }
+
+    .pricing ul{
+        display: flex;
+    }
+
+    .pricing ul li:first-child{
+        border-radius: 8px 0 0 8px ;
+    }
+
+    .pricing ul li:last-child{
+        border-radius: 0 8px 8px 0  ;
+    }
+
+    .pricing ul li{
+        padding:3em 1.2em;
+        flex-basis: 25%;
+        border: 1px solid #8a9198;
+    }
+
+    .pricing .value{
+        padding: 1em;
+        border-radius: 40px;
+        text-align: center;
+        font-size: .8em;
+        font-weight: lighter;
+        background-color: #1badea;
+        color: #2f3a3d;
+    }
+
+    .pricing .free{
+        background-color: white;
+
+    }
+
+    .pricing .value .cost{
+        font-size: 1.5em;
+        font-weight: bold;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+
+    .pricing ul li a{
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        color: white;
+        flex-flow: column;
+    }
+    .pricing ul li a{
+        gap: .5em;
+    }
+
+    .pricing ul li a :nth-child(n+2){
+        font-size: .9em;
+        font-weight: 600;
+    }
+    .pricing ul li a :last-child{
+        font-size: .7em;
+        font-weight: lighter;
+    }
+    
+    .gr{
+        color: #8a9198;
+    }
+
+    .pricing ul li:hover{
+        background-color: #424c50;
+        cursor: pointer;
+    }
+
+    .pricing .signup {
+        margin-top: 1em;
+        display: flex;
+        align-items: flex-start;
+        flex-flow:row wrap;
+        justify-content: flex-end;
+        border: none;
+        background: none;
+        font-size: .95em;
+        font-weight: 500;
+    }
+
+    .pricing .signup:hover{
+        opacity: .7;
+        cursor: pointer;
+    }
+    .pricing .signup :first-child{
+        margin-left: 4em;
+        background-color: #00b5f0;
+        padding: 1em 3em;
+        padding-right: 8em;
+        padding-left: .5em;
+        color: white;
+        border-radius: .5em;
+        
+    }
+
+    .pricing .signup :last-child{
+        position: relative;
+        top: -.5em;
+        left: -5em;
+        width: 65px;
+        height: 65px;
+        display: inline-block;
+        background: url(asset/image/signup.png) no-repeat -75px;
+        background-size: 152px 75px;
+    }
+
+    .vectortype{
+        display: flex;
+        width: 100%;
+        background-color: white;
+        flex-flow:column wrap;
+        align-items: center;
+        padding-bottom: 4em;
+    }
+
+    .vectortype h2{
+        color: black;
+    }
+
+    .vectortype h3{
+        color: #939598;
+        margin: 0;
+        text-align: center;
+        font-size: 1em;
+        width: 35%;
+        font-weight: lighter;
+    }
+
+    .bitmap{
+        display: flex;
+        width: 1000px;
+        margin-top: 4em;
+
+    }
+
+    .bitmap .wrapper{
+        border: 1px solid white;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        flex-basis: 50%;
+    }
+
+    .bitmap .wrapper button{
+        font-weight: bold;
+        border: none;
+        border-radius: .3em;
+        padding: .7em;
+        color: white;
+        background-color: #101123;
+        margin: 2em;
+    }
+
+    .bitmap .wrapper img{
+        background-color: #101123;
+        width: 100%;
+    }
+
+    .bitmap .wrapper button span{
+        position: relative;
+        top: 1.9em;
+        left: -40%;
+        width: 1em;
+        height: 1em;
+        display: inline-block;
+        background:url(asset/image/type.png) no-repeat;
+        background-size: 10px 8px;
+    }
+
+    .scale{
+        display: flex;
+        position: relative;
+        top: -8em;
+        justify-content: center;
+        align-items: center;
+        border-radius:3px;
+        flex-flow: column;
+        background-color: #101123;
+        color: white;
+        padding: 1em;
+        border: 1px solid white;
+        gap: .5em;
+    }
+
+    .scale span:first-child{
+        font-size: .7em;
+        color: #999;
+    }
+
+    .scale span:last-child{
+        font-size: 1.4em;
+        font-weight: 500;
+    }
+
+    .timeline{
+        margin-bottom: 4em;
+        display: flex;
+        justify-content: space-between;
+        width: 600px;
+        border-bottom: 8px solid #dddddd ;
+        color:#9e9d9d ;
+    }
+
+    .timeline span{
+        font-size: .8em;
+        position: relative;
+        top: 40px;
+        flex-grow: 1;
+    }
+    .timeline span:after{
+        font-size: 1.3em;
+        position: relative;
+        top: -28px;
+        left: -28px;
+        content: "0";
+      width: 10px;
+      height: 10px;
+      background-color: #dddddd; 
+      color: #dddddd;
+      border-radius: 40px;
+      padding: 0 4px; 
+    }
+
+    .timeline span:first-child{
+        left: -12px;
+    }
+
+    .timeline span:nth-child(2){
+        left: 10px;
+    }
+
+        .timeline span:nth-child(3){
+        left: 40px;
+    }
+
+       .timeline span:nth-child(4){
+        left: 60px;
+    }
+
+    .timeline span:last-child{
+        left: 100px;
+    }
+
+    .vectortype .link a{
+        background-color: #dddddd;
+    }
+
+    #find{
+        margin:0;
+    }
+
+    .clearfix{
+        clear: both;
+    }
+
+    footer{
+        background-image: url(asset/image/footer-border.png);
+        background-color: #101123;
+        background-repeat: repeat-x;
+        background-size: 15px 3px;
+        border-bottom:#00b5f0 3px solid;
+        padding: 3em;
+        gap: 10em;
+        display: flex;
+
+    }
+
+    footer p{
+        margin: 0;
+    }
+
+    footer .item{
+        flex-basis: 25%;
+        
+    }
+
+    footer h2{
+        font-size: .8em;
+        font-weight: 600;
+        letter-spacing: .02em;
+    }
+
+    footer a{
+        font-size: .8em;
+        color: #8d8d91;
+        text-decoration: none;
+    }
+    footer a:hover{
+        text-decoration:underline;
+        color: #ccc;
+    }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+
+    <header>
+        
+        <!-- User menu -->
+        <section class="user-menu">
+            
+            <section>
+                <a href="#" class="logo"><img src="asset/image/logo-vectorstock.svg" alt="vector-logo" width="150"></a>
+                <button>ALL VECTOR</button>
+                <button>FREE VECTOR</button>
+            </section>
+            
+            <section>
+                <button>PRICING</button>
+                <button>SIGN UP</button>
+                <button>LOGIN</button>
+            </section>
+            
+        </section>
+        <!-- Header Content -->
+        <section class="header-content">
+            <h1>
+                <a href="#">23,421,852 Royalty Free Vector Images</a>
+            </h1>
+
+            <h2>
+                <strong>VectorStock</strong> is the world’s <strong>Premier Vector-only Image Marketplace</strong>
+            </h2>
+
+            <form action="get">
+                <input type="text" placeholder="Search for vector images....">
+                <label for="search"><img src="asset/image/search.png" alt="search-icon"></label>
+            </form>
+        </section>
+        
+        <!-- News Update -->
+        <section class="news-update">
+            <span>NEW!</span>
+            <a href="#">Coronavirus vector image and resources for COVID-19</a>
+        </section>
+
+    </header>
+
+    <!-- Category Gallery -->
+
+    <main>
+
+        <nav>
+            <ul>
+                <li class="selected"><a href="#">DOODLES</a><span></span></li>
+                <li><a href="#">FLORAL</a><span></span></li>
+                <li><a href="#">BIRTHDAY</a><span></span></li>
+                <li><a href="#">TRAVEL</a><span></span></li>
+                <li><a href="#">WATERCOLOR</a><span></span></li>
+                <li class="selected"><a href="#">T-SHIRT GRAPHIC</a><span></span></li>
+                <li class="selected"><a href="#">POPULAR</a><span></span></li>
+            </ul>
+            <div class="clearfix"></div>
+        </nav>
+
+        <div class="content">
+            <ul>
+                <li>
+                   <a href="#"><img src="asset/image/gallery/1.jpg" alt="1"></a>
+                </li>
+                <li>
+                    <a href="#"><img src="asset/image/gallery/2.jpg" alt="2"></a>
+                </li>
+                 <li>
+                    <a href="#"><img src="asset/image/gallery/3.jpg" alt="3"></a>
+                </li>
+                 <li>
+                    <a href="#"><img src="asset/image/gallery/4.jpg" alt="4"></a>
+                </li>
+                 <li>
+                    <a href="#"><img src="asset/image/gallery/5.jpg" alt="5"></a>
+                </li>
+                 <li>
+                    <a href="#"><img src="asset/image/gallery/6.jpg" alt="6"></a>
+                </li>
+                 <li>
+                    <a href="#"><img src="asset/image/gallery/7.jpg" alt="7"></a>
+                </li>
+                 <li>
+                    <a href="#"><img src="asset/image/gallery/8.jpg" alt="8"></a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="content-scroll">
+            <ul>
+                <li>
+                    <a href="#"><img src="asset/image/scroll/1.jpg" alt="1"></a>
+                </li>
+                <li>
+                    <a href="#"><img src="asset/image/scroll/2.jpg" alt="2"></a>
+                </li>
+                <li>
+                    <a href="#"><img src="asset/image/scroll/3.jpg" alt="3"></a>
+                </li>
+                <li>
+                    <a href="#"><img src="asset/image/scroll/4.jpg" alt="4"></a>
+                </li>
+                <li>
+                    <a href="#"><img src="asset/image/scroll/5.jpg" alt="5"></a>
+                </li>
+                 <li>
+                    <a href="#"><img src="asset/image/scroll/6.jpg" alt="6"></a>
+                </li>
+                 <li>
+                    <a href="#"><img src="asset/image/scroll/7.jpg" alt="7"></a>
+                </li>
+                 <li>
+                    <a href="#"><img src="asset/image/scroll/8.jpg" alt="8"></a>
+                </li>
+                <li class="more">
+                    <a href="#">Search Vintage</a>
+                    <button>View More !</button>
+                </li>
+
+            </ul>
+        </div>
+
+        <div class="link">
+            <a href="#">VIEW IMAGES CATEGORIES</a>
+        </div>
+
+        <div class="pricing">
+            <h2>Premium Images, not Premium Prices</h2>
+            <h3>Millions of vector images with 10,000+ new added daily</h3>
+
+            <ul>
+                <li>
+                    <a href="#">
+                        <span class="value free">
+                            <span class="cost">
+                                <sup>$</sup>0
+                            </span>
+                            <span>IMAGES</span>
+                        </span>
+                        <span>Free Vector</span>
+                        <span class="gr">707,548 Free Vector Images</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="value">
+                            <span class="cost">
+                                69<sup>¢</sup>
+                            </span>
+                            <span>IMAGES</span>
+                        </span>
+                        <span>Subscription</span>
+                        <span class="gr">Monthly Image Plans</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="value">
+                            <span class="cost">
+                                <sup>$</sup>1
+                            </span>
+                            <span>IMAGES</span>
+                        </span>
+                        <span>Credits</span>
+                        <span class="gr">Pre-paid Image Credits</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="value">
+                            <span class="cost">
+                                <sup>$</sup>14.<sup>99</sup>
+                            </span>
+                            <span>IMAGES</span>
+                        </span>
+                        <span>Pay-per-Image</span>
+                        <span class="gr">One-off Image Purchase</span>
+                    </a>
+                </li>
+            </ul>
+            <button class="signup">
+                <span>SIGNUP FOR FREE</span>
+                <span></span>
+            </button>
+        </div>
+
+        <div class="vectortype">
+            <h2>What is vector ?</h2>
+            <h3>Vector graphics are images that can be resized without any loss of quality.
+            Best for printing and high-res display.</h3>
+            <div class="bitmap">
+                <div class="wrapper">
+                    <button>BITMAP IMAGE<span></span></button>
+                    
+                    <img src="asset/image/wing-left.png" alt="wing">
+                </div>
+                <div class="wrapper">
+                    <button>VECTOR IMAGE<span></span></button>
+                    
+                    <img src="asset/wing.png" alt="wing">
+                </div>
+            </div>
+            <div class="scale">
+                <span>SCALE</span>
+                <span>1000%</span>
+            </div>
+
+            
+            <div class="timeline">
+                <span>100%</span>
+                <span>550%</span>
+                <span>1000%</span>
+                <span>1500%</span>
+                <span>2000%</span>
+            </div>
+            <div id="find" class="link">
+                <a href="#">FIND OUT MORE</a>
+            </div>
+        </div>
+
+
+    </main>
+
+
+    <!-- Footer -->
+
+    <footer>
+        <div class="item">
+            <h2>VECTORSTOCK</h2>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Free Vectors</a></li>
+                <li><a href="#">All Vectors</a></li>
+                <li><a href="#">What is Vector ?</a></li>
+            </ul>
+            <ul>
+                <li><a href="#">Frequently Asked Questions</a></li>
+                <li><a href="#">Ters & Conditions</a></li>
+                <li><a href="#">Contact Us</a></li>
+            </ul>
+        </div>
+
+        <div class="item">
+            <h2>Account</h2>
+            <ul>
+                <li><a href="#">Join Now</a></li>
+                <li><a href="#">Pricing</a></li>
+                <li><a href="#">Contributor Sign Up</a></li>
+                <li><a href="#">Contributor FAQ</a></li>
+            </ul>
+        </div>
+
+        <div class="item">
+            <h2>Social</h2>
+            <ul>
+                <li><a href="#">Facebook</a></li>
+                <li><a href="#">Pinterest</a></li>
+                <li><a href="#">Twitter</a></li>
+            </ul>
+            <ul>
+                <li><a href="#">
+                    <img src="asset/image/logo-vectorstock.svg" alt="logo" width="120">
+                    <p>VectorStock and the VectorStock logo are registered trademarks of VectorStock Media.</p>
+                    <p>&copy; 2020. All Rights Reserved.</p>
+                </a></li>
+            </ul>
+        </div>
+    </footer>
+
+</body>
+</html>
